@@ -1,7 +1,7 @@
 import type {Metadata} from 'next';
 import {Suspense} from 'react';
 import {notFound} from 'next/navigation';
-import {CustomMDX} from 'app/components/mdx';
+import {CustomMDX} from 'mdx';
 import {unstable_noStore as noStore} from 'next/cache';
 
 export async function generateMetadata({
