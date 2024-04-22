@@ -260,7 +260,7 @@ export default function Page() {
                         TrademarkVision's AI powered visual search engine for trademarks as well as IP Australia's Trade
                         Mark and Design Search tools and Trade Mark Assist.
                     </p>
-                    <div className="flex flex-col mt-4 mb-2">
+                    <div className="flex flex-col mt-4 mb-2 border-l-4 pl-2">
                         <p className=" font-medium">
                             <a href="https://trademark.vision" target="_blank"
                                className="text-orange-500 hover:text-orange-600 dark:text-yellow-300 dark:hover:text-yellow-400 underline"
@@ -274,7 +274,7 @@ export default function Page() {
                             Design: UX & UI Design
                         </p>
                     </div>
-                    <div className="flex flex-col mt-4 mb-2">
+                    <div className="flex flex-col mt-2 mb-2 border-l-4 pl-2">
                         <p className=" font-medium">
                             <a href="https://tmgns.search.ipaustralia.gov.au" target="_blank"
                                className="text-orange-500 hover:text-orange-600 dark:text-yellow-300 dark:hover:text-yellow-400 underline"
@@ -288,17 +288,17 @@ export default function Page() {
                             Design: UX & UI Design, UX Research, Accessibility WCAG 2.1
                         </p>
                     </div>
-                    <div className="flex flex-col mt-2 mb-2">
+                    <div className="flex flex-col mt-2 mb-2 border-l-4 pl-2">
                         <p className=" font-medium">
                             IP Australia Trade Mark Assist
                         </p>
                         <p className=" text-sm">
                             Tech: VueJS, Typescript, APIs integration, AI, Cypress, Jest
                             <br/>
-                            Design: UX Research & Design, UI Design, Accessibility WCAG 2.1, Storybook
+                            Design: UX Research, UI Design, Accessibility WCAG 2.1, Storybook
                         </p>
                     </div>
-                    <div className="flex flex-col mt-2 mb-2">
+                    <div className="flex flex-col mt-2 mb-2 border-l-4 pl-2">
                         <p className=" font-medium">
                             <a href="https://search.ipaustralia.gov.au/designs" target="_blank"
                                className="text-orange-500 hover:text-orange-600 dark:text-yellow-300 dark:hover:text-yellow-400 underline"
