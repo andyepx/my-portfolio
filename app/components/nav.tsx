@@ -4,15 +4,12 @@ const navItems = {
   '/': {
     name: 'home',
   },
-  '/work': {
-    name: 'work',
+  '/case-studies': {
+    name: 'case studies',
   },
-  '/blog': {
-    name: 'blog',
-  },
-  '/guestbook': {
-    name: 'guestbook',
-  },
+  // '/blog': {
+  //   name: 'blog',
+  // }
 };
 
 export function Navbar() {
