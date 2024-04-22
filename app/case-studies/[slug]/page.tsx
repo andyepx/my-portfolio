@@ -1,22 +1,30 @@
-import type {Metadata} from 'next';
-import {MDXRemote} from 'next-mdx-remote/rsc'
+import {getAllPostsPath, getPostData} from 'app/lib/mdx-data';
+import {MDXRemote} from "next-mdx-remote/rsc";
+import React, {Suspense} from "react";
 import {components} from "../../lib/mdx-components";
-import {getPostData} from "../../lib/mdx-data";
-import Link from "next/link";
-
-export const metadata: Metadata = {
-    title: 'Case Studies',
-    description: 'A few case studies from past projects.',
-};
 
 export default function Page({params}) {
     return (
         <section>
-            <Link href="/case-studies" className="mb-6 inline-block text-sm">
+            <a href="/case-studies" className="mb-6 inline-block text-sm">
                 Back to all case studies
-            </Link>
-            <MDXRemote source={getPostData('case-studies', params.slug).content}
-                       components={{...components, ...(params.components || {})}}/>
+            </a>
+            <Suspense>
+                <MDXRemote source={getPostData('case-studies', params!.slug).content} components={components}/>
+            </Suspense>
         </section>
     );
 }
+
+export const generateStaticParams = async () => {
+    return getAllPostsPath('case-studies').map(x => ({
+        slug: x,
+    }));
+}
+
+// export const getStaticProps = (async (context) => {
+//     const content = await serialize(getPostData('case-studies', context.params!.slug as string).content);
+//     return {props: {mdxContent: content}}
+// }) satisfies GetStaticProps<{
+//     mdxContent: any
+// }>

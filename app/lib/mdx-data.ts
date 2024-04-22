@@ -19,13 +19,7 @@ function getMdxFiles(page: string) {
 
 export function getAllPostsPath(page: string) {
     const allMdxFiles = getMdxFiles(page);
-    return allMdxFiles.map((parsedFile) => {
-        return {
-            params: {
-                id: parsedFile.name
-            }
-        }
-    })
+    return allMdxFiles.map((parsedFile) => parsedFile.name);
 }
 
 export function getPostsMetaData(page: string) {
@@ -45,6 +39,8 @@ export function getPostsMetaData(page: string) {
 }
 
 export function getPostData(page: string, id: string) {
+    console.log(page, id);
+
     const fullPath = path.join(postsDirectory(page), id + mdx_file_extention);
 
     // get MDX metadata and content

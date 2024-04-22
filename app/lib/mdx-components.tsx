@@ -1,3 +1,5 @@
+import {useMDXComponents} from "@mdx-js/react";
+
 export const components = {
     h1: (props) => (
         <h1 {...props} className="text-xl font-bold mb-6">
@@ -31,8 +33,8 @@ export const components = {
     ),
     img: (props) => (
         <figure>
-            <img {...props} className=""/>
-            {props.alt ? <figcaption className="text-center">{props.alt}</figcaption> : <></>}
-        </figure>
-    ),
+             <img {...props} />
+             {props.alt ? <figcaption className="text-center">{props.alt}</figcaption> : <></>}
+         </figure>
+     ),
 }
