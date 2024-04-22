@@ -3,11 +3,29 @@ import {MDXRemote} from "next-mdx-remote/rsc";
 import React, {Suspense} from "react";
 import {components} from "../../lib/mdx-components";
 
+function ArrowIcon() {
+    return (
+        <svg
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{transform: 'rotate(225deg)'}}
+        >
+            <path
+                d="M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z"
+                fill="currentColor"
+            />
+        </svg>
+    );
+}
+
 export default function Page({params}) {
     return (
         <section>
-            <a href="/case-studies" className="mb-6 inline-block text-sm">
-                Back to all case studies
+            <a href="/case-studies" className="mb-6 inline-block text-sm flex flex-row items-center">
+                <ArrowIcon/>&nbsp;Back to all case studies
             </a>
             <Suspense>
                 <MDXRemote source={getPostData('case-studies', params!.slug).content} components={components}/>
@@ -21,10 +39,3 @@ export const generateStaticParams = async () => {
         slug: x,
     }));
 }
-
-// export const getStaticProps = (async (context) => {
-//     const content = await serialize(getPostData('case-studies', context.params!.slug as string).content);
-//     return {props: {mdxContent: content}}
-// }) satisfies GetStaticProps<{
-//     mdxContent: any
-// }>
