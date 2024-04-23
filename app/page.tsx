@@ -124,9 +124,9 @@ export default function Page() {
                             Lewi Software
                         </p>
                         <p className=" text-sm">
-                            Tech: React, Tailwind
-                            <br/>
                             Design: UI Design, Prototyping
+                            <br/>
+                            Tech: React, Tailwind
                         </p>
                     </div>
 
@@ -192,9 +192,9 @@ export default function Page() {
                             </a>
                         </p>
                         <p className="text-sm">
-                            Tech: VueJS, Typescript, APIs integration, AI
-                            <br/>
                             Design: UX Research, UI Design, Accessibility WCAG 2.1
+                            <br/>
+                            Tech: VueJS, Typescript, APIs integration, AI
                         </p>
                     </div>
                     <div className="flex flex-col mt-2 mb-2 border-l-4 pl-2">
@@ -202,9 +202,9 @@ export default function Page() {
                             IP Australia's examination tools
                         </p>
                         <p className=" text-sm">
-                            Tech: VueJS, Typescript, Micro Front Ends, APIs integration
-                            <br/>
                             Design: UX Research, UI Design, User Testing, Accessibility WCAG 2.1
+                            <br/>
+                            Tech: VueJS, Typescript, Micro Front Ends, APIs integration
                         </p>
                     </div>
 
@@ -269,9 +269,9 @@ export default function Page() {
                             </a>
                         </p>
                         <p className=" text-sm">
-                            Tech: VueJS, Typescript, APIs integration, AI, Cypress, Jest
-                            <br/>
                             Design: UX & UI Design
+                            <br/>
+                            Tech: VueJS, Typescript, APIs integration, AI, Cypress, Jest
                         </p>
                     </div>
                     <div className="flex flex-col mt-2 mb-2 border-l-4 pl-2">
@@ -283,9 +283,9 @@ export default function Page() {
                             </a>
                         </p>
                         <p className=" text-sm">
-                            Tech: VueJS, Typescript, APIs integration, AI, Cypress
-                            <br/>
                             Design: UX & UI Design, UX Research, Accessibility WCAG 2.1
+                            <br/>
+                            Tech: VueJS, Typescript, APIs integration, AI, Cypress
                         </p>
                     </div>
                     <div className="flex flex-col mt-2 mb-2 border-l-4 pl-2">
@@ -293,9 +293,9 @@ export default function Page() {
                             IP Australia Trade Mark Assist
                         </p>
                         <p className=" text-sm">
-                            Tech: VueJS, Typescript, APIs integration, AI, Cypress, Jest
-                            <br/>
                             Design: UX Research, UI Design, Accessibility WCAG 2.1, Storybook
+                            <br/>
+                            Tech: VueJS, Typescript, APIs integration, AI, Cypress, Jest
                         </p>
                     </div>
                     <div className="flex flex-col mt-2 mb-2 border-l-4 pl-2">
@@ -307,9 +307,9 @@ export default function Page() {
                             </a>
                         </p>
                         <p className=" text-sm">
-                            Tech: VueJS, AngularJS, Typescript, APIs integration, AI, Cypress, Jest
-                            <br/>
                             Design: UX & UI Design, UX Research, User Testing Workshops, Accessibility WCAG 2.1,
+                            <br/>
+                            Tech: VueJS, AngularJS, Typescript, APIs integration, AI, Cypress, Jest
                             Storybook
                         </p>
                     </div>
