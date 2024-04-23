@@ -1,7 +1,6 @@
 import type {Metadata} from 'next';
 import Link from "next/link";
 import {getPostsMetaData} from "../lib/mdx-data";
-import {tableRow} from "mdast-util-to-hast/lib/handlers";
 
 export const metadata: Metadata = {
     title: 'Case Studies',
