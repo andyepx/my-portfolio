@@ -24,7 +24,7 @@ function ArrowIcon() {
 export default function Page({params}) {
     return (
         <section>
-            <a href="/case-studies" className="mb-6 inline-block text-sm flex flex-row items-center">
+            <a href="/case-studies" className="mb-6 text-sm flex flex-row items-center">
                 <ArrowIcon/>&nbsp;Back to all case studies
             </a>
             <Suspense>
