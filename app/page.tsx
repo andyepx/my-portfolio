@@ -59,6 +59,17 @@ export default function Page() {
                                 className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
                                 rel="noopener noreferrer"
                                 target="_blank"
+                                href="https://github.com/andyepx?tab=repositories"
+                            >
+                                <ArrowIcon/>
+                                <p className="ml-2 h-7">github</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+                                rel="noopener noreferrer"
+                                target="_blank"
                                 href="https://instagram.com/andyepx"
                             >
                                 <ArrowIcon/>
