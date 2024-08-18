@@ -40,7 +40,8 @@ export default function Page() {
                         photography</a>, pottery, food and travel.
                     </p>
                     <p className=" mt-2 prose dark:prose-invert leading-normal">
-                        I am currently freelancing, and looking for opportunity to work on Software Dev and UX projects.
+                        Always looking for opportunity to work on Software Dev and UX projects that can have a positive
+                        impact on our future.
                     </p>
                     <ul className="font-sm mt-4 flex flex-col text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300">
                         <li>
@@ -101,11 +102,21 @@ export default function Page() {
                         2024 - now
                     </p>
                     <p className="text-sm pr-4 mt-1 prose dark:prose-invert">
-                        Brisbane, Australia
+                        Australia
                     </p>
                 </div>
                 <div className="w-3/4">
                     <h1 className="mb-2 text-md font-bold">
+                        Senior Front End Developer at Heidi Health
+                    </h1>
+                    <p className="prose dark:prose-invert leading-normal">
+                        Leading the Front End Development of Heidi's integrations to bring Heidi to more and more health
+                        professionals. Check out the <a href="https://heidihealth.com" target="_blank"
+                                                        className="underline">Heidi Health website</a> to learn more
+                        about the groundbreaking solutions we're working on.
+                    </p>
+
+                    <h1 className="mt-6 mb-2 text-md font-bold">
                         Gomoku Studio - Freelancer
                     </h1>
                     <p className="prose dark:prose-invert leading-normal">
