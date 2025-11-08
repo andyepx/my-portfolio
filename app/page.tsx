@@ -136,7 +136,7 @@ export default function Page() {
                         <p className=" text-sm">
                             Design: UI & UX Design
                             <br/>
-                            Tech: Next.js, VueJS, Typescript, APIs
+                            Tech: VueJS, Typescript, APIs
                         </p>
                     </div>
                     <div className="flex flex-col mt-4 mb-2 border-l-4 pl-2">
