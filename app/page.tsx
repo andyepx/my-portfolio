@@ -127,7 +127,25 @@ export default function Page() {
 
                     <div className="flex flex-col mt-4 mb-2 border-l-4 pl-2">
                         <p className=" font-medium">
-                            Perth Children's Hospital: rare diseases discovery tool
+                            <a href="https://biomodels.bacpop.org/" target="_blank"
+                               className="text-orange-500 hover:text-orange-600 dark:text-yellow-300 dark:hover:text-yellow-400 underline"
+                               style={{textDecorationColor: 'inherit'}}>
+                                Menelmacar visualiser - EMBL-EBI's BioModels database
+                            </a>
+                        </p>
+                        <p className=" text-sm">
+                            Design: UI & UX Design
+                            <br/>
+                            Tech: Next.js, VueJS, Typescript, APIs
+                        </p>
+                    </div>
+                    <div className="flex flex-col mt-4 mb-2 border-l-4 pl-2">
+                        <p className=" font-medium">
+                            <a href="https://gomoku.studio/case-study/perth-children-hospital" target="_blank"
+                               className="text-orange-500 hover:text-orange-600 dark:text-yellow-300 dark:hover:text-yellow-400 underline"
+                               style={{textDecorationColor: 'inherit'}}>
+                                Perth Children's Hospital: rare diseases discovery tool
+                            </a>
                         </p>
                         <p className=" text-sm">
                             Tech: Next.js, React, Typescript, APIs
@@ -143,7 +161,11 @@ export default function Page() {
                     </div>
                     <div className="flex flex-col mb-2 border-l-4 pl-2">
                         <p className=" font-medium">
-                            Lewi Software
+                            <a href="https://gomoku.studio/case-study/perth-children-hospital" target="_blank"
+                               className="text-orange-500 hover:text-orange-600 dark:text-yellow-300 dark:hover:text-yellow-400 underline"
+                               style={{textDecorationColor: 'inherit'}}>
+                                Lewi Software - FloWire platform
+                            </a>
                         </p>
                         <p className=" text-sm">
                             Design: UI Design, Prototyping
