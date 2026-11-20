@@ -102,18 +102,41 @@ export default function Page() {
                         2024 - now
                     </p>
                     <p className="text-sm pr-4 mt-1 prose dark:prose-invert">
-                        Australia
+                        Melbourne, Australia
                     </p>
                 </div>
                 <div className="w-3/4">
                     <h1 className="mb-2 text-md font-bold">
-                        Senior Front End Developer at Heidi Health
+                        <a href="https://heidihealth.com" target="_blank" className="underline">Heidi Health</a>
                     </h1>
+
+                    <p className="font-medium">Engineering Lead</p>
+                    <p className="text-sm mb-1 opacity-70">Jul 2026 - now · Melbourne</p>
                     <p className="prose dark:prose-invert leading-normal">
-                        Leading the Front End Development of Heidi's integrations to bring Heidi to more and more health
-                        professionals. Check out the <a href="https://heidihealth.com" target="_blank"
-                                                        className="underline">Heidi Health website</a> to learn more
-                        about the groundbreaking solutions we're working on.
+                        Leading the engineering team behind Heidi's cross-organisation enterprise and compliance
+                        programs. I'm driving the design and migration of our feature flags platform and the
+                        engineering work towards medical device certification and enterprise readiness, alongside
+                        CI/CD pipeline design for compliant releases and our QA strategy and best practices. Working
+                        closely with our largest enterprise customers, I also design and deliver bespoke solutions
+                        that fit Heidi into their workflows.
+                    </p>
+
+                    <p className="mt-4 font-medium">Engineering Lead, Integrations</p>
+                    <p className="text-sm mb-1 opacity-70">Jan 2025 - Jul 2026 · Melbourne</p>
+                    <p className="prose dark:prose-invert leading-normal">
+                        Led the integrations team connecting Heidi with EMR and hospital systems across the globe,
+                        securely and at scale. I worked in partnership with EMR vendors including Epic, Athena,
+                        Veradigm, EMIS and Gentu, and directly with enterprise customers to set up and roll out Heidi
+                        in their Epic environments. Our team built API and FHIR-based integrations and handled the
+                        interoperability work needed for reliable, bidirectional clinical data exchange within
+                        provider workflows.
+                    </p>
+
+                    <p className="mt-4 font-medium">Senior Frontend Engineer</p>
+                    <p className="text-sm mb-1 opacity-70">Jun 2024 - Jan 2025</p>
+                    <p className="prose dark:prose-invert leading-normal">
+                        Worked on Heidi's flagship scribe product, and led the front end development of Heidi's
+                        integrations to bring Heidi to more and more health professionals.
                     </p>
 
                     <h1 className="mt-6 mb-2 text-md font-bold">
