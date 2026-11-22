@@ -148,15 +148,6 @@ function SectionTitle({children}: { children: React.ReactNode }) {
     );
 }
 
-function Monogram({name}: { name: string }) {
-    return (
-        <div
-            className="flex-shrink-0 w-12 h-12 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center font-mono text-lg text-neutral-600 dark:text-neutral-300">
-            {name[0]}
-        </div>
-    );
-}
-
 function Points({points}: { points: React.ReactNode[] }) {
     return (
         <ul className="mt-2 space-y-1.5 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400 list-disc pl-4 marker:text-neutral-300 dark:marker:text-neutral-600">
@@ -168,8 +159,7 @@ function Points({points}: { points: React.ReactNode[] }) {
 function ExperienceRow({e}: { e: Experience }) {
     return (
         <details open={e.open} className="group">
-            <summary className="flex gap-4 items-start cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                <Monogram name={e.company}/>
+            <summary className="flex items-start cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                 <div className="flex-1 min-w-0">
                     <div className="flex items-baseline justify-between gap-4">
                         <p className="font-medium text-neutral-900 dark:text-neutral-100">
@@ -184,7 +174,7 @@ function ExperienceRow({e}: { e: Experience }) {
                     </p>
                 </div>
             </summary>
-            <div className="ml-16 mt-3">
+            <div className="mt-3 pl-4 border-l border-neutral-100 dark:border-neutral-800">
                 {e.href && (
                     <p className="text-sm mb-3">{ext(e.href, e.href.replace('https://', ''))}</p>
                 )}
@@ -242,8 +232,7 @@ export default function Page() {
                 <div className="space-y-6">
                     {projects.map((p) => (
                         <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer"
-                           className="group flex gap-4 items-start">
-                            <Monogram name={p.name}/>
+                           className="group flex items-start">
                             <div className="flex-1 min-w-0">
                                 <p className="font-medium text-neutral-900 dark:text-neutral-100 group-hover:underline underline-offset-2">
                                     {p.name}
