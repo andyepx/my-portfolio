@@ -1,431 +1,274 @@
-// import { Suspense } from 'react';
-// import { unstable_noStore as noStore } from 'next/cache';
-import Image from 'next/image';
-import profile from 'public/profile.jpg'
+import Link from 'next/link';
+import {getPostsMetaData} from './lib/mdx-data';
 
-function ArrowIcon() {
+type Role = {
+    title: string;
+    dates: string;
+    points: React.ReactNode[];
+};
+
+type Experience = {
+    company: string;
+    href?: string;
+    role: string;
+    dates: string;
+    location: string;
+    roles?: Role[];
+    points?: React.ReactNode[];
+    open?: boolean;
+};
+
+const ext = (href: string, label: string) => (
+    <a href={href} target="_blank" rel="noopener noreferrer"
+       className="underline decoration-neutral-300 underline-offset-2 hover:decoration-neutral-600 dark:decoration-neutral-600 dark:hover:decoration-neutral-300">
+        {label}
+    </a>
+);
+
+const experiences: Experience[] = [
+    {
+        company: 'Heidi Health',
+        href: 'https://heidihealth.com',
+        role: 'Engineering Lead',
+        dates: '2024 — Present',
+        location: 'Melbourne',
+        open: true,
+        roles: [
+            {
+                title: 'Engineering Lead',
+                dates: 'Jul 2026 — Present',
+                points: [
+                    "Leading the engineering team behind Heidi's cross-organisation enterprise and compliance programs.",
+                    'Driving the design of our new feature flags platform and the migration onto it.',
+                    'Leading the engineering work towards medical device certification and enterprise readiness.',
+                    'Designing CI/CD pipelines for compliant releases, and owning QA strategy and best practices.',
+                    'Working with our largest enterprise customers to design and deliver bespoke solutions that fit Heidi into their workflows.',
+                ],
+            },
+            {
+                title: 'Engineering Lead, Integrations',
+                dates: 'Jan 2025 — Jul 2026',
+                points: [
+                    'Led the team connecting Heidi with EMR and hospital systems across the globe, securely and at scale.',
+                    'Partnered with EMR vendors including Epic, Athena, Veradigm, EMIS and Gentu.',
+                    'Worked directly with enterprise customers to set up and roll out Heidi in their Epic environments.',
+                    'Built API and FHIR-based integrations for reliable, bidirectional clinical data exchange within provider workflows.',
+                ],
+            },
+            {
+                title: 'Senior Frontend Engineer',
+                dates: 'Jun 2024 — Jan 2025',
+                points: [
+                    "Worked on Heidi's flagship scribe product, and led the front end development of Heidi's integrations.",
+                ],
+            },
+        ],
+    },
+    {
+        company: 'Uuvipak',
+        role: 'Co-Founder & COO',
+        dates: '2021 — 2023',
+        location: 'Brisbane',
+        points: [
+            'Co-founded Uuvipak to eradicate single use plastic packaging by upcycling clean organic food manufacturing byproducts.',
+            <>Selected for the {ext('https://www.techstars.com/newsroom/announcing-12-startups-in-the-techstars-farm-to-fork-class-of-2023', 'Techstars Farm to Fork accelerator')}, won the {ext('https://www.nespresso.com/au/en/startcup-challenge', 'Nespresso StartCup challenge')} and was nominated in The Australian's Top Innovators of 2023.</>,
+        ],
+    },
+    {
+        company: 'Clarivate',
+        role: 'Senior UX Developer',
+        dates: '2019 — 2021',
+        location: 'Brisbane & Pittsburgh',
+        points: [
+            "Led one of Clarivate's UX and Front End teams, working on IP protection and examination platforms.",
+            <>Designed and built the {ext('https://eliss.wineaustralia.com', 'Wine Australia Export Label Search System')} and IP Australia's internal examination tools for patents and trade marks.</>,
+        ],
+    },
+    {
+        company: 'TrademarkVision',
+        href: 'https://trademark.vision',
+        role: 'Senior Front End & UX Developer',
+        dates: '2015 — 2019',
+        location: 'Brisbane & Pittsburgh',
+        points: [
+            "Led the Front End and UX team building TrademarkVision's AI powered visual search engine for trademarks.",
+            <>Designed and built IP Australia's {ext('https://search.ipaustralia.gov.au/designs', 'Trade Mark and Design Search')}, {ext('https://tmgns.search.ipaustralia.gov.au', 'Goods and Services Classification')} and Trade Mark Assist.</>,
+        ],
+    },
+    {
+        company: 'University of Queensland',
+        role: 'Front End Developer',
+        dates: '2015 — 2016',
+        location: 'Brisbane',
+        points: [
+            'Built an internal tool, with the schools of ITEE and Engineering, that helped students discover study paths aligned with university requirements.',
+        ],
+    },
+    {
+        company: 'Freelance',
+        role: 'Developer & Designer',
+        dates: '2008 — 2015',
+        location: 'Italy, UK, China, Australia',
+        points: [
+            'Websites and digital products for small businesses, a museum showcase for a local gallery, and IT support for local schools.',
+        ],
+    },
+];
+
+const projects = [
+    {
+        name: 'Sugo',
+        href: 'https://sugoflights.app',
+        description: 'Personal flight diary and live flight tracking. Flutter, Kotlin, Postgres.',
+    },
+    {
+        name: 'Libro',
+        href: 'https://readwithlibro.app',
+        description: 'Neighbourhood book sharing. Flutter, Kotlin, Postgres.',
+    },
+    {
+        name: 'Gomoku Studio',
+        href: 'https://gomoku.studio',
+        description: "My independent studio: UX and front end work for EMBL-EBI's BioModels, Perth Children's Hospital, Octfolio and Lewi.",
+    },
+];
+
+const links = [
+    {label: 'LinkedIn', href: 'https://linkedin.com/in/andreaepifani'},
+    {label: 'GitHub', href: 'https://github.com/andyepx'},
+    {label: 'Resume', href: 'https://drive.usercontent.google.com/u/0/uc?id=1bIT0ws1lrlzgH29ZV6uFYpe8PI0kaMn8&export=download'},
+    {label: 'Instagram', href: 'https://instagram.com/andyepx'},
+];
+
+function SectionTitle({children}: { children: React.ReactNode }) {
     return (
-        <svg
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <path
-                d="M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z"
-                fill="currentColor"
-            />
-        </svg>
+        <h2 className="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-6">
+            {children}
+        </h2>
+    );
+}
+
+function Monogram({name}: { name: string }) {
+    return (
+        <div
+            className="flex-shrink-0 w-12 h-12 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center font-mono text-lg text-neutral-600 dark:text-neutral-300">
+            {name[0]}
+        </div>
+    );
+}
+
+function Points({points}: { points: React.ReactNode[] }) {
+    return (
+        <ul className="mt-2 space-y-1.5 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400 list-disc pl-4 marker:text-neutral-300 dark:marker:text-neutral-600">
+            {points.map((p, i) => <li key={i}>{p}</li>)}
+        </ul>
+    );
+}
+
+function ExperienceRow({e}: { e: Experience }) {
+    return (
+        <details open={e.open} className="group">
+            <summary className="flex gap-4 items-start cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                <Monogram name={e.company}/>
+                <div className="flex-1 min-w-0">
+                    <div className="flex items-baseline justify-between gap-4">
+                        <p className="font-medium text-neutral-900 dark:text-neutral-100">
+                            {e.company}
+                            <span
+                                className="ml-2 inline-block text-neutral-400 transition-transform group-open:rotate-90">›</span>
+                        </p>
+                        <p className="text-sm text-neutral-500 whitespace-nowrap">{e.dates}</p>
+                    </div>
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                        {e.role} · {e.location}
+                    </p>
+                </div>
+            </summary>
+            <div className="ml-16 mt-3">
+                {e.href && (
+                    <p className="text-sm mb-3">{ext(e.href, e.href.replace('https://', ''))}</p>
+                )}
+                {e.roles?.map((r) => (
+                    <div key={r.title} className="mb-5 last:mb-0">
+                        <div className="flex items-baseline justify-between gap-4">
+                            <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100">{r.title}</p>
+                            <p className="text-xs text-neutral-500 whitespace-nowrap">{r.dates}</p>
+                        </div>
+                        <Points points={r.points}/>
+                    </div>
+                ))}
+                {e.points && <Points points={e.points}/>}
+            </div>
+        </details>
     );
 }
 
 export default function Page() {
+    const caseStudies = getPostsMetaData('case-studies')
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
     return (
         <section>
-            <div className='flex flex-row'>
-                <div className="w-1/4">
-                    <Image src={profile} alt="Andy" className="pr-4 mt-1"/>
-                </div>
-                <div className="w-3/4">
-                    <h1 className="mb-4 text-xl font-bold">
-                        hi there, I'm andy 👋
-                    </h1>
-                    <p className="prose dark:prose-invert leading-normal">
-                        I'm a curious designer & developer, with a passion for discovering how design affect us and our
-                        planet. I have over 10 years experience working at small to medium size startups.
-                    </p>
-                    <p className=" mt-2 prose dark:prose-invert leading-normal">
-                        I enjoy everything creative, including <a href='https://refrakt.app/andyepx' target='_blank'>film
-                        photography</a>, pottery, food and travel.
-                    </p>
-                    <p className=" mt-2 prose dark:prose-invert leading-normal">
-                        Always looking for opportunity to work on Software Dev and UX projects that can have a positive
-                        impact on our future.
-                    </p>
-                    <ul className="font-sm mt-4 flex flex-col text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300">
-                        <li>
-                            <a
-                                className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                                href="https://linkedin.com/in/andreaepifani"
-                            >
-                                <ArrowIcon/>
-                                <p className="ml-2 h-7">linkedin</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                                href="https://github.com/andyepx"
-                            >
-                                <ArrowIcon/>
-                                <p className="ml-2 h-7">github</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                                href="https://instagram.com/andyepx"
-                            >
-                                <ArrowIcon/>
-                                <p className="ml-2 h-7">instagram</p>
-                            </a>
-                        </li>
-                    </ul>
+            <header className="mb-16">
+                <h1 className="font-mono text-5xl font-medium tracking-tighter">Andy Epifani</h1>
+                <p className="mt-6 leading-relaxed text-neutral-700 dark:text-neutral-300">
+                    Engineering Lead at {ext('https://heidihealth.com', 'Heidi Health')} in Melbourne. I lead teams
+                    that take healthcare AI into enterprise environments: integrating with Epic and other EMRs,
+                    rolling out with customers, and building the compliance foundations that let enterprises adopt it.
+                </p>
+                <p className="mt-3 leading-relaxed text-neutral-700 dark:text-neutral-300">
+                    10+ years across startups as a founder, designer and engineer. I still ship my own apps on the
+                    side.
+                </p>
+                <nav className="mt-6 flex flex-wrap gap-4 text-sm font-semibold">
+                    {links.map((l) => (
+                        <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
+                           className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+                            {l.label}
+                        </a>
+                    ))}
+                </nav>
+            </header>
+
+            <div className="mb-20">
+                <SectionTitle>Experience</SectionTitle>
+                <div className="space-y-6">
+                    {experiences.map((e) => <ExperienceRow key={e.company} e={e}/>)}
                 </div>
             </div>
 
-            <hr className="my-6 border-neutral-100 dark:border-neutral-800"/>
-
-            <div className='flex flex-row mt-8 mb-6'>
-                <div className="w-1/4"></div>
-                <div className="w-3/4 flex flex-row">
-                    <p className="text-xl pr-4 font-bold w-full">
-                        work experience
-                    </p>
-                    <a href="https://drive.usercontent.google.com/u/0/uc?id=1bIT0ws1lrlzgH29ZV6uFYpe8PI0kaMn8&export=download"
-                       target="_blank" className="flex flex-row items-center  whitespace-nowrap">
-                        Resume&nbsp;<ArrowIcon/>
-                    </a>
+            <div className="mb-20">
+                <SectionTitle>Projects</SectionTitle>
+                <div className="space-y-6">
+                    {projects.map((p) => (
+                        <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer"
+                           className="group flex gap-4 items-start">
+                            <Monogram name={p.name}/>
+                            <div className="flex-1 min-w-0">
+                                <p className="font-medium text-neutral-900 dark:text-neutral-100 group-hover:underline underline-offset-2">
+                                    {p.name}
+                                </p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">{p.description}</p>
+                            </div>
+                        </a>
+                    ))}
                 </div>
             </div>
 
-            <div className="flex flex-row mt-2">
-                <div className="w-1/4 flex flex-col ">
-                    <p className="text-md font-medium pr-4 prose dark:prose-invert">
-                        2024 - now
-                    </p>
-                    <p className="text-sm pr-4 mt-1 prose dark:prose-invert">
-                        Melbourne, Australia
-                    </p>
-                </div>
-                <div className="w-3/4">
-                    <h1 className="mb-2 text-md font-bold">
-                        <a href="https://heidihealth.com" target="_blank" className="underline">Heidi Health</a>
-                    </h1>
-
-                    <p className="font-medium">Engineering Lead</p>
-                    <p className="text-sm mb-1 opacity-70">Jul 2026 - now · Melbourne</p>
-                    <p className="prose dark:prose-invert leading-normal">
-                        Leading the engineering team behind Heidi's cross-organisation enterprise and compliance
-                        programs. I'm driving the design and migration of our feature flags platform and the
-                        engineering work towards medical device certification and enterprise readiness, alongside
-                        CI/CD pipeline design for compliant releases and our QA strategy and best practices. Working
-                        closely with our largest enterprise customers, I also design and deliver bespoke solutions
-                        that fit Heidi into their workflows.
-                    </p>
-
-                    <p className="mt-4 font-medium">Engineering Lead, Integrations</p>
-                    <p className="text-sm mb-1 opacity-70">Jan 2025 - Jul 2026 · Melbourne</p>
-                    <p className="prose dark:prose-invert leading-normal">
-                        Led the integrations team connecting Heidi with EMR and hospital systems across the globe,
-                        securely and at scale. I worked in partnership with EMR vendors including Epic, Athena,
-                        Veradigm, EMIS and Gentu, and directly with enterprise customers to set up and roll out Heidi
-                        in their Epic environments. Our team built API and FHIR-based integrations and handled the
-                        interoperability work needed for reliable, bidirectional clinical data exchange within
-                        provider workflows.
-                    </p>
-
-                    <p className="mt-4 font-medium">Senior Frontend Engineer</p>
-                    <p className="text-sm mb-1 opacity-70">Jun 2024 - Jan 2025</p>
-                    <p className="prose dark:prose-invert leading-normal">
-                        Worked on Heidi's flagship scribe product, and led the front end development of Heidi's
-                        integrations to bring Heidi to more and more health professionals.
-                    </p>
-
-                    <h1 className="mt-6 mb-2 text-md font-bold">
-                        Gomoku Studio - Freelancer
-                    </h1>
-                    <p className="prose dark:prose-invert leading-normal">
-                        Working on UX and Front End projects as a freelancer. Most of my work is currently focused on
-                        digital products. Most of the design research and prototyping is done in Figma, and the products
-                        are developed using Next.js and React. Some of my latest projects are:
-                    </p>
-
-                    <div className="flex flex-col mt-4 mb-2 border-l-4 pl-2">
-                        <p className=" font-medium">
-                            <a href="https://biomodels.bacpop.org/" target="_blank"
-                               className="text-orange-500 hover:text-orange-600 dark:text-yellow-300 dark:hover:text-yellow-400 underline"
-                               style={{textDecorationColor: 'inherit'}}>
-                                Menelmacar visualiser - EMBL-EBI's BioModels database
-                            </a>
-                        </p>
-                        <p className=" text-sm">
-                            Design: UI & UX Design
-                            <br/>
-                            Tech: VueJS, Typescript, APIs
-                        </p>
-                    </div>
-                    <div className="flex flex-col mt-4 mb-2 border-l-4 pl-2">
-                        <p className=" font-medium">
-                            <a href="https://gomoku.studio/case-study/perth-children-hospital" target="_blank"
-                               className="text-orange-500 hover:text-orange-600 dark:text-yellow-300 dark:hover:text-yellow-400 underline"
-                               style={{textDecorationColor: 'inherit'}}>
-                                Perth Children's Hospital: rare diseases discovery tool
-                            </a>
-                        </p>
-                        <p className=" text-sm">
-                            Tech: Next.js, React, Typescript, APIs
-                        </p>
-                    </div>
-                    <div className="flex flex-col mb-2 border-l-4 pl-2">
-                        <p className=" font-medium">
-                            Octfolio: design system & prototypes
-                        </p>
-                        <p className=" text-sm">
-                            Design: UX Research, Customer Workshop
-                        </p>
-                    </div>
-                    <div className="flex flex-col mb-2 border-l-4 pl-2">
-                        <p className=" font-medium">
-                            <a href="https://gomoku.studio/case-study/perth-children-hospital" target="_blank"
-                               className="text-orange-500 hover:text-orange-600 dark:text-yellow-300 dark:hover:text-yellow-400 underline"
-                               style={{textDecorationColor: 'inherit'}}>
-                                Lewi Software - FloWire platform
-                            </a>
-                        </p>
-                        <p className=" text-sm">
-                            Design: UI Design, Prototyping
-                            <br/>
-                            Tech: React, Tailwind
-                        </p>
-                    </div>
-
+            <div className="mb-8">
+                <SectionTitle>Case studies</SectionTitle>
+                <div className="space-y-3">
+                    {caseStudies.map((post) => (
+                        <Link key={post.id} href={`/case-studies/${post.id}`}
+                              className="group flex items-baseline justify-between gap-4">
+                            <span className="text-neutral-900 dark:text-neutral-100 group-hover:underline underline-offset-2">
+                                {post.title}
+                            </span>
+                            <span className="text-sm text-neutral-500">{new Date(post.date).getFullYear()}</span>
+                        </Link>
+                    ))}
                 </div>
             </div>
-
-            <div className="flex flex-row mt-4">
-                <div className="w-1/4 flex flex-col ">
-                    <p className="text-md font-medium pr-4 prose dark:prose-invert">
-                        2021 - 2023
-                    </p>
-                    <p className="text-sm pr-4 mt-1 prose dark:prose-invert">
-                        Brisbane, Australia
-                    </p>
-                </div>
-                <div className="w-3/4">
-                    <h1 className="mb-2 text-md font-bold">
-                        Co-Founder & COO at Uuvipak
-                    </h1>
-                    <p className="prose dark:prose-invert leading-normal">
-                        Co-founded Uuvipak with the mission to eradicate single use plastic packaging by upcycling clean
-                        organic food manufacturing byproducts.</p>
-                    <p className="mt-2 prose dark:prose-invert leading-normal">
-                        Uuvipak was selected to participate in the prestigious <a
-                        href="https://www.techstars.com/newsroom/announcing-12-startups-in-the-techstars-farm-to-fork-class-of-2023"
-                        target="_blank" className="underline">Techstars Farm 2 Fork accelerator</a> and won numerous
-                        awards, including the <a href="https://www.nespresso.com/au/en/startcup-challenge"
-                                                 target="_blank" className="underline">Nespresso StartCup
-                        challenge</a> award and nominated <a
-                        href="https://www.theaustralian.com.au/subscribe/news/1/?sourceCode=TAWEB_WRE170_a_GGL&dest=https://www.theaustralian.com.au/business/technology/the-list-top-100-innovators/news-story/3a249e3c6e283ae5a58420377b92a4a2&memtype=anonymous&mode=premium&v21=GROUPA-Segment-1-NOSCORE&V21spcbehaviour=append"
-                        target="_blank" className="underline">Australian Top Innovators of 2023</a>.
-                    </p>
-                </div>
-            </div>
-
-            <div className="flex flex-row mt-4">
-                <div className="w-1/4 flex flex-col ">
-                    <p className="text-md font-medium pr-4 prose dark:prose-invert">
-                        2019 - 2021
-                    </p>
-                    <p className="text-sm pr-4 mt-1 prose dark:prose-invert">
-                        Brisbane, Australia
-                        <br/>
-                        Pittsburgh, USA
-                    </p>
-                </div>
-                <div className="w-3/4">
-                    <h1 className="mb-2 text-md font-bold ">
-                        Senior UX Developer at Clarivate
-                    </h1>
-                    <p className="prose dark:prose-invert leading-normal">
-                        Led one of Clarivate's UX and Front End Development teams, working on IP protection and
-                        examination platforms. I was responsible for the design and front end development of Wine
-                        Australia Export Label Search System and some of IP Australia's internal examination tools for
-                        patents and trade marks.
-                    </p>
-                    <div className="flex flex-col mt-4 mb-2 border-l-4 pl-2">
-                        <p className=" font-medium">
-                            <a href="https://eliss.wineaustralia.com" target="_blank"
-                               className="text-orange-500 hover:text-orange-600 dark:text-yellow-300 dark:hover:text-yellow-400 underline"
-                               style={{textDecorationColor: 'inherit'}}>
-                                Wine Australia Export Label Search System
-                            </a>
-                        </p>
-                        <p className="text-sm">
-                            Design: UX Research, UI Design, Accessibility WCAG 2.1
-                            <br/>
-                            Tech: VueJS, Typescript, APIs integration, AI
-                        </p>
-                    </div>
-                    <div className="flex flex-col mt-2 mb-2 border-l-4 pl-2">
-                        <p className=" font-medium">
-                            IP Australia's examination tools
-                        </p>
-                        <p className=" text-sm">
-                            Design: UX Research, UI Design, User Testing, Accessibility WCAG 2.1
-                            <br/>
-                            Tech: VueJS, Typescript, Micro Front Ends, APIs integration
-                        </p>
-                    </div>
-
-                    <h1 className="mt-6 mb-2 text-md font-bold">Freelance Flutter developer</h1>
-                    <p className="prose dark:prose-invert leading-normal">
-                        Designed and developed two mobile apps using Flutter, Firebase and Google Cloud Platform. The
-                        apps were developed as personal projects, and are now being used by over 100 users weekly.
-                    </p>
-                    <div className="flex flex-col mt-4 mb-2 border-l-4 pl-2">
-                        <p className=" font-medium">
-                            <a href="https://sugoflights.app" target="_blank"
-                               className="text-orange-500 hover:text-orange-600 dark:text-yellow-300 dark:hover:text-yellow-400 underline"
-                               style={{textDecorationColor: 'inherit'}}>
-                                Sugo: your personal flight diary
-                            </a>
-                        </p>
-                        <p className=" text-sm">
-                            Tech: Flutter, Dart, Kotlin, Postgres
-                        </p>
-                    </div>
-                    <div className="flex flex-col mt-2 mb-2 border-l-4 pl-2">
-                        <p className=" font-medium">
-                            <a href="https://readwithlibro.app" target="_blank"
-                               className="text-orange-500 hover:text-orange-600 dark:text-yellow-300 dark:hover:text-yellow-400 underline"
-                               style={{textDecorationColor: 'inherit'}}>
-                                Libro: neighbourhood book sharing
-                            </a>
-                        </p>
-                        <p className=" text-sm">
-                            Tech: Flutter, Dart, Kotlin, Postgres
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div className="flex flex-row mt-4">
-                <div className="w-1/4 flex flex-col">
-                    <p className="text-md font-medium pr-4 prose dark:prose-invert">
-                        2015 - 2019
-                    </p>
-                    <p className="text-sm pr-4 mt-1 prose dark:prose-invert">
-                        Brisbane, Australia
-                        <br/>
-                        Pittsburgh, USA
-                    </p>
-                </div>
-                <div className="w-3/4">
-                    <h1 className="mb-2 text-md font-bold">
-                        Senior Front End and UX Developer at TrademarkVision
-                    </h1>
-                    <p className="prose dark:prose-invert leading-normal">
-                        Led TrademarkVision's Front End and UX team, working on the design and development of
-                        TrademarkVision's AI powered visual search engine for trademarks as well as IP Australia's Trade
-                        Mark and Design Search tools and Trade Mark Assist.
-                    </p>
-                    <div className="flex flex-col mt-4 mb-2 border-l-4 pl-2">
-                        <p className=" font-medium">
-                            <a href="https://trademark.vision" target="_blank"
-                               className="text-orange-500 hover:text-orange-600 dark:text-yellow-300 dark:hover:text-yellow-400 underline"
-                               style={{textDecorationColor: 'inherit'}}>
-                                TrademarkVision: AI powered visual search for trademarks
-                            </a>
-                        </p>
-                        <p className=" text-sm">
-                            Design: UX & UI Design
-                            <br/>
-                            Tech: VueJS, Typescript, APIs integration, AI, Cypress, Jest
-                        </p>
-                    </div>
-                    <div className="flex flex-col mt-2 mb-2 border-l-4 pl-2">
-                        <p className=" font-medium">
-                            <a href="https://tmgns.search.ipaustralia.gov.au" target="_blank"
-                               className="text-orange-500 hover:text-orange-600 dark:text-yellow-300 dark:hover:text-yellow-400 underline"
-                               style={{textDecorationColor: 'inherit'}}>
-                                IP Australia Goods and Services Classification
-                            </a>
-                        </p>
-                        <p className=" text-sm">
-                            Design: UX & UI Design, UX Research, Accessibility WCAG 2.1
-                            <br/>
-                            Tech: VueJS, Typescript, APIs integration, AI, Cypress
-                        </p>
-                    </div>
-                    <div className="flex flex-col mt-2 mb-2 border-l-4 pl-2">
-                        <p className=" font-medium">
-                            IP Australia Trade Mark Assist
-                        </p>
-                        <p className=" text-sm">
-                            Design: UX Research, UI Design, Accessibility WCAG 2.1, Storybook
-                            <br/>
-                            Tech: VueJS, Typescript, APIs integration, AI, Cypress, Jest
-                        </p>
-                    </div>
-                    <div className="flex flex-col mt-2 mb-2 border-l-4 pl-2">
-                        <p className=" font-medium">
-                            <a href="https://search.ipaustralia.gov.au/designs" target="_blank"
-                               className="text-orange-500 hover:text-orange-600 dark:text-yellow-300 dark:hover:text-yellow-400 underline"
-                               style={{textDecorationColor: 'inherit'}}>
-                                IP Australia Trade Mark and Design Search
-                            </a>
-                        </p>
-                        <p className=" text-sm">
-                            Design: UX & UI Design, UX Research, User Testing Workshops, Accessibility WCAG 2.1,
-                            <br/>
-                            Tech: VueJS, AngularJS, Typescript, APIs integration, AI, Cypress, Jest
-                            Storybook
-                        </p>
-                    </div>
-
-                    <h1 className="mt-6 mb-2 text-md font-bold">
-                        Front End Developer at University of Queensland
-                    </h1>
-                    <p className="prose dark:prose-invert leading-normal">
-                        Developed an internal tool for students to discover their career paths. The tool was developed
-                        in collaboration with the school of ITEE and Engineering. The tool gathered data from all
-                        faculties to create potential study paths that aligned with the university requirements. It was
-                        built using Bootstrap and AngularJS.
-                    </p>
-                </div>
-            </div>
-
-            <div className="flex flex-row mt-4">
-                <div className="w-1/4 flex flex-col">
-                    <p className="text-md font-medium pr-4 prose dark:prose-invert">
-                        2008 - 2015
-                    </p>
-                    <p className="text-sm pr-4 mt-1 prose dark:prose-invert">
-                        Brisbane, Australia
-                        <br/>
-                        Shanghai, China
-                        <br/>
-                        Turin, Italy
-                        <br/>
-                        Derry, UK
-                    </p>
-                </div>
-                <div className="w-3/4">
-                    <h1 className="mb-2 text-md font-bold">
-                        Freelance Developer & Designer
-                    </h1>
-                    <p className="prose dark:prose-invert leading-normal">
-                        Worked on a variety of small local businesses websites mostly built in Wordpress for clients in
-                        Italy, the UK, China, and Australia. I continued freelancing throughout my university studies
-                        and early career.
-                    </p>
-                    <p className="mt-2 prose dark:prose-invert leading-normal">
-                        During this time I also collaborated on the design and development of a museum showcase for a
-                        local gallery, and was contributing my IT skills to local schools and organisations that needed
-                        support with their infrastrcture.
-                    </p>
-                </div>
-            </div>
-
         </section>
-    )
-        ;
+    );
 }

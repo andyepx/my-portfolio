@@ -13,10 +13,10 @@ export const metadata: Metadata = {
         default: 'Andy Epifani',
         template: '%s | Andy Epifani',
     },
-    description: 'Developer & Designer for a greener future.',
+    description: 'Engineering Lead at Heidi Health. Healthcare integrations, enterprise and compliance.',
     openGraph: {
         title: 'Andy Epifani',
-        description: 'Developer & Designer for a greener future.',
+        description: 'Engineering Lead at Heidi Health. Healthcare integrations, enterprise and compliance.',
         url: 'https://andyepifani.com',
         siteName: 'Andy Epifani',
         locale: 'en_US',

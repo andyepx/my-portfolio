@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import {usePathname} from 'next/navigation';
 
 const navItems = {
   '/': {
@@ -7,12 +10,10 @@ const navItems = {
   '/case-studies': {
     name: 'case studies',
   },
-  // '/blog': {
-  //   name: 'blog',
-  // }
 };
 
 export function Navbar() {
+  if (usePathname() === '/') return <div className="mb-8"/>;
   return (
     <aside className="-ml-[8px] mb-16 tracking-tight">
       <div className="lg:sticky lg:top-20">

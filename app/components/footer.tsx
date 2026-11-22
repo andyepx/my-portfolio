@@ -6,7 +6,7 @@ export function Footer() {
                 live, work and create.
             </p>
             <p className="text-sm mt-2">
-                &copy; 2024. Andy Epifani.
+                &copy; {new Date().getFullYear()} Andy Epifani.
             </p>
         </footer>
     );
